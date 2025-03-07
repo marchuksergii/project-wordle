@@ -6,7 +6,6 @@ import { checkGuess } from "../../game-helpers";
 
 function Guess({ guess = '', answer = '' }) {
   const guessLengthRange = range(GUESS_LENGTH);
-  const splittedGuess = guess?.split('');
   const guessData = checkGuess(guess, answer);
   
   return (
@@ -14,9 +13,9 @@ function Guess({ guess = '', answer = '' }) {
       {guessLengthRange?.map(index => (
         <span
           key={index}
-          className={`cell${guessData ? ` ${guessData[index].status}` : ''}`}
+          className={`cell ${guessData?.[index]?.status || ''}`}
         >
-          {splittedGuess[index]}
+          {guessData?.[index]?.letter}
         </span>
       ))}
     </p>
